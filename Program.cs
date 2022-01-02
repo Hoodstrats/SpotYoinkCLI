@@ -15,8 +15,10 @@ namespace Hood.Core
 
     static void Main(string[] args)
     {
+      Version ver = Assembly.GetExecutingAssembly().GetName().Version;
+      string subVer = ver.ToString().Substring(0, 5);
       string[] lines = {
-        $"Spotlight Wallpaper Grabber {Assembly.GetExecutingAssembly().GetName().Version} - Hoodstrats\n",
+        $"Spotlight Wallpaper Grabber {subVer} - Hoodstrats\n",
         "This tool will Grab and Convert the Windows login Wallpapers.\n",
         "Press S to check if Spotlight has new Wallpapers and copy them.\n" ,
         "Press Q at any time if you want to Quit.\n"
@@ -157,12 +159,26 @@ namespace Hood.Core
 
       string[] files = Directory.GetFiles(createdFolder);
 
-      //think about making this equivalent to the number of files in the folder and set that as the current int before ++
-      //also pass the name of that last file down to do a string comparison to see if we continue with the operation
-      int index = GetLastFileIndex(createdFolder);
+      int index = 0;
+
+      foreach (string f in files)
+      {
+        //check original filename without renaming which should be series of random chars
+        var named = Path.GetFileNameWithoutExtension(f);
+        //avoid incrementing the index with the unnamed raw files before actually creating   
+        if (named.Contains("Wallpaper"))
+        {
+          //think about making this equivalent to the number of files in the folder and set that as the current int before ++
+          //also pass the name of that last file down to do a string comparison to see if we continue with the operation
+          index++;
+        }
+      }
 
       foreach (string s in files)
       {
+        //check original filename without renaming which should be series of random chars
+        var named = Path.GetFileNameWithoutExtension(s);
+
         //turn the date into a var that we can use to compare files
         //add a '_' to string or some split indicator so we can use it to filter out files
         //check to see if the date has already been used, if it has then abort operation
@@ -170,9 +186,6 @@ namespace Hood.Core
         var date = DateTime.Now.ToString("MMM-d-yyyy");
         string newName = $"Wallpaper_{index}_{date}.jpg";
         string newFile = Path.Combine(createdFolder, newName);
-
-        //check original filename without renaming which should be series of random chars
-        var named = Path.GetFileNameWithoutExtension(s);
 
         //if the file already has wallpaper in it that means it's already been renamed skip it
         if (!named.Contains("Wallpaper"))
