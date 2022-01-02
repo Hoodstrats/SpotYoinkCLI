@@ -63,11 +63,11 @@ namespace Hood.Core
 
       if (Directory.Exists(dest))
       {
-        WriteToConsole($"This will create a new folder located at {dest}. Press C to proceed.\n", ConsoleColor.Red);
+        WriteToConsole($"Looks like you've already setup a {dest} folder. Press C to proceed.\n", ConsoleColor.Red);
       }
       else
       {
-        WriteToConsole($"Looks like you've already setup a {dest} folder. Press C to proceed.\n", ConsoleColor.Red);
+        WriteToConsole($"This will create a new folder located at {dest}. Press C to proceed.\n", ConsoleColor.Red);
       }
 
       var pressed = Console.ReadKey(true);
@@ -77,21 +77,8 @@ namespace Hood.Core
         //creates new folder if it doesn't already exist
         Directory.CreateDirectory(dest);
 
-        //populate current list of files and grab last index
-        var lastFile = GetLastFileIndex(dest);
-
-        //check if the last file's creation date is the same as current
-        if (GetIfUsedToday(_filesInFolder[lastFile]))
-        {
-          WriteToConsole($"It seems like you've already used the app today...\n", ConsoleColor.Red);
-          WriteToConsole($"Try again tommorow. Spotlight only updates so many times...\n", ConsoleColor.Red);
-
-          //delay the code execution so the message can come up
-          int milliseconds = 3000;
-          Thread.Sleep(milliseconds);
-
-          Environment.Exit(0);
-        }
+        //here we check for files, if there are files we compare dates to see if app already used
+        CheckIfCanContinue(dest);
 
         WriteToConsole("Looks like there are new Wallpapers to copy.\n", ConsoleColor.Green);
 
@@ -109,6 +96,27 @@ namespace Hood.Core
       else if (pressed.Key == ConsoleKey.Q)
       {
         Environment.Exit(0);
+      }
+    }
+    static void CheckIfCanContinue(string dest)
+    {
+      if (Directory.GetFiles(dest).Length != 0)
+      {
+        //populate current list of files and grab last index
+        var lastFile = GetLastFileIndex(dest);
+
+        //check if the last file's creation date is the same as current
+        if (GetIfUsedToday(_filesInFolder[lastFile]))
+        {
+          WriteToConsole($"It seems like you've already used the app today...\n", ConsoleColor.Red);
+          WriteToConsole($"Try again tommorow. Spotlight only updates so many times...\n", ConsoleColor.Red);
+
+          //delay the code execution so the message can come up
+          int milliseconds = 3000;
+          Thread.Sleep(milliseconds);
+
+          Environment.Exit(0);
+        }
       }
     }
     //loop through the files we copied over and check their dimensions, delete the ones that don't meet criteria
