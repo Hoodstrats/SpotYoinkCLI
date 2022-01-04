@@ -11,7 +11,7 @@
     <Summary>Simple CLI tool to grab and convert Windows Login Wallpapers.</Summary>
     <Version>1.0.0</Version>
     <Authors>Hoodstrats</Authors>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright 2021 © Hoodstrats. All rights reserved. </Copyright>
     <RootNamespace>Hood.Core</RootNamespace>
     <PackAsTool>true</PackAsTool>
