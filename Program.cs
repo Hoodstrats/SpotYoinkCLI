@@ -38,7 +38,7 @@ namespace Hood.Core
       if (pressed.Key == ConsoleKey.S)
       {
         string genericApp = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        string spotLightLocation = @$"{genericApp}\Appdata\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets";
+        string spotLightLocation = $@"{genericApp}\Appdata\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\LocalState\Assets";
 
         WriteToConsole("\nSearching Windows Spotlight for new wallpapers...\n", ConsoleColor.Green);
 
@@ -61,7 +61,7 @@ namespace Hood.Core
     {
       //the @ symbol ensures that windows recognizes the "/" symbol no matter the direction
       var userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-      string dest = @$"{userFolder}\Pictures\Spotlight";
+      string dest = $@"{userFolder}\Pictures\Spotlight";
 
       if (Directory.Exists(dest))
       {
@@ -190,7 +190,7 @@ namespace Hood.Core
         //if the file already has wallpaper in it that means it's already been renamed skip it
         if (!named.Contains("Wallpaper"))
         {
-          File.Move(s, newFile, true);
+          File.Copy(s, newFile, true);
 
           var createdFile = Path.GetFileNameWithoutExtension(newFile);
 

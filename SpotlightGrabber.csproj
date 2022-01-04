@@ -2,16 +2,27 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
     <ApplicationIcon>spr\YIcon.ico</ApplicationIcon>
     <StartupObject>Hood.Core.Program</StartupObject>
     <PackageIcon>spr\YIcon.png</PackageIcon>
     <AssemblyName>SpotYoink</AssemblyName>
+    <Description>Simple CLI tool to grab and convert Windows Login Wallpapers. Simply open 
+    your Windows command prompt/terminal and type in "yoink".</Description>
+    <Summary>Simple CLI tool to grab and convert Windows Login Wallpapers.</Summary>
+    <Version>1.0.0</Version>
+    <Authors>Hoodstrats</Authors>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Copyright>Copyright 2021 © Hoodstrats. All rights reserved. </Copyright>
     <RootNamespace>Hood.Core</RootNamespace>
-    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <PackAsTool>true</PackAsTool>
+    <PackageTags>cli;tool;spotlight;login;wallpaper;yoink</PackageTags>
     <ToolCommandName>yoink</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
