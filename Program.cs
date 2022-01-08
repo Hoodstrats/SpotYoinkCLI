@@ -144,6 +144,7 @@ namespace Hood.Core
           }
         }
       }
+      WriteToConsole($"Deleted {filesToDelete.Count} files...\n", ConsoleColor.Yellow);
       foreach (string s in filesToDelete)
       {
         File.Delete(s);
@@ -199,7 +200,7 @@ namespace Hood.Core
           index++;
         }
       }
-      WriteToConsole("\nDone enjoy your new Wallpapers.\n", ConsoleColor.Green);
+      WriteToConsole($"\nOperation done. Enjoy your {files.Length} new Wallpapers.\n", ConsoleColor.Yellow);
       WriteToConsole("Press any key to Quit.\n", ConsoleColor.Red);
       Console.ReadKey(true);
       Environment.Exit(0);
