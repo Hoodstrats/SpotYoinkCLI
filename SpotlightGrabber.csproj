@@ -13,6 +13,7 @@
     <Authors>Hoodstrats</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright 2021 © Hoodstrats. All rights reserved. </Copyright>
+    <RepositoryUrl>https://github.com/Hoodstrats/SpotYoinkCLI</RepositoryUrl>
     <RootNamespace>Hood.Core</RootNamespace>
     <PackAsTool>true</PackAsTool>
     <PackageTags>cli;tool;spotlight;login;wallpaper;yoink</PackageTags>
