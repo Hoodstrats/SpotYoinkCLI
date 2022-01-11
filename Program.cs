@@ -193,7 +193,7 @@ namespace Hood.Core
         {
           File.Copy(s, newFile, true);
 
-          var createdFile = Path.GetFileNameWithoutExtension(newFile);
+          var createdFile = Path.GetFileName(newFile);
 
           WriteToConsole(createdFile, ConsoleColor.Red);
 
