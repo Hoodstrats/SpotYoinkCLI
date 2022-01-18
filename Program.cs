@@ -175,6 +175,9 @@ namespace Hood.Core
         }
       }
 
+      //print out the files we actually make
+      List<string> filesCreated = new List<string>();
+
       foreach (string s in files)
       {
         //check original filename without renaming which should be series of random chars
@@ -191,16 +194,20 @@ namespace Hood.Core
         //if the file already has wallpaper in it that means it's already been renamed skip it
         if (!named.Contains("Wallpaper"))
         {
-          File.Copy(s, newFile, true);
+          //copy wasn't deleting the old files
+          File.Move(s, newFile, true);
 
           var createdFile = Path.GetFileName(newFile);
 
           WriteToConsole(createdFile, ConsoleColor.Red);
 
+          //add to list so we can print
+          filesCreated.Add(createdFile);
+
           index++;
         }
       }
-      WriteToConsole($"\nOperation done. Enjoy your {files.Length} new Wallpapers.\n", ConsoleColor.Yellow);
+      WriteToConsole($"\nOperation done. Enjoy your {filesCreated.Count} new Wallpapers.\n", ConsoleColor.Yellow);
       WriteToConsole("Press any key to Quit.\n", ConsoleColor.Red);
       Console.ReadKey(true);
       Environment.Exit(0);
